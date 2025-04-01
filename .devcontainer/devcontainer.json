@@ -1,0 +1,26 @@
+{
+    "name": "Python AI Development",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",  // Any generic, debian-based image.
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/python:1.7.0": {
+            "version": "3.12",          // Python version
+            "installTools": true,       // Install pip, venv, etc.
+            "venvPath": "/home/vscode/.venv",  // Virtualenv location
+            "venvCreate": true,         // Create virtualenv automatically
+            "optimize": true            // Optimize Python installation
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}
