@@ -12,4 +12,5 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     git \
     curl \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    apt-get install libgl1-mesa-glx
