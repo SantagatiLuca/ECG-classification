@@ -12,14 +12,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 
         self.handlers = MainWindowHandlers(self)
+        self.ui.stackedWidget.setCurrentIndex(0)
 
         self._connect_signals()
 
     def _connect_signals(self):
         #Connect UI elements to their handlers
-        self.ui.radioButton.clicked.connect(self.handlers.addfile_button_click)
-        self.ui.radioButton_2.clicked.connect(self.handlers.view_button_click)
-        self.ui.radioButton_3.clicked.connect(self.handlers.settings_button_click)
+        self.ui.home_button.clicked.connect(self.handlers.home_button_click)
+        self.ui.view_model_button.clicked.connect(self.handlers.view_model_button_click)
+        self.ui.settings_button.clicked.connect(self.handlers.settings_button_click)
         self.ui.file_dialog_button.clicked.connect(self.handlers.file_dialog_click)
         #self.actionOpen.triggered.connect(self.handlers.handle_open_action) # actions
 
