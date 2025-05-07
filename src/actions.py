@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QFileDialog, QVBoxLayout
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
+import tensorflow as tf
 
 
 class MainWindowHandlers:
@@ -11,6 +12,8 @@ class MainWindowHandlers:
         self.main_window = main_window
         self.ui = main_window.ui
         self.current_data = None  # To store loaded ECG data
+        self.model = None
+        self._load_model()
 
     def home_button_click(self):
         print("Button Clicked!")
@@ -80,7 +83,7 @@ class MainWindowHandlers:
         label = "Normal" if self.current_data.iloc[0, -1] == 0 else "Abnormal"
         
         # Plot the ECG
-        ax.plot(values, label=f'ECG (Label: {label})')
+        ax.plot(values)
         ax.set_title('ECG Signal')
         ax.set_xlabel('Time steps')
         ax.set_ylabel('Amplitude')
@@ -102,3 +105,36 @@ class MainWindowHandlers:
         self.ui.plot_frame.layout().addWidget(self.canvas)
         
         self.canvas.draw()
+        self.ui.real_label.setText(f"Real Class: {label}")
+        self._predict_label(values)
+ 
+    def _predict_label(self,values):
+        # Make prediction
+        try:
+            prediction = self.model.predict(values)
+            predicted_class = "Normal" if prediction[0][0] < 0.5 else "Abnormal"
+            confidence = prediction[0][0] if predicted_class == "Abnormal" else 1 - prediction[0][0]
+            
+            # 4. Update UI
+            self.ui.prediction_label.setText(
+                f"Predicted class: {predicted_class} ({confidence:.2%} confidence)")
+        
+        except Exception as e:
+            self.ui.prediction_label.setText(f"Prediction error: {str(e)}")
+
+
+    def _load_model(self):
+        """Load the pre-trained Keras model"""
+        try:
+            # 1. Define model path (adjust as needed)
+            model_path = "ecg_model.h5"
+            
+            # 2. Load model with custom objects if needed
+            self.model = tf.keras.models.load_model(model_path)
+            
+            # 3. Verify input shape matches your ECG data (187 features)
+            assert self.model.input_shape == (None, 187)
+            
+            print("Model loaded successfully")
+        except Exception as e:
+            print(f"Model loading failed: {str(e)}")

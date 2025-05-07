@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(867, 582)
+        MainWindow.resize(973, 691)
         MainWindow.setMinimumSize(QSize(640, 480))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -162,28 +162,65 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.plot_frame = QFrame(self.frame_6)
         self.plot_frame.setObjectName(u"plot_frame")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.plot_frame.sizePolicy().hasHeightForWidth())
+        self.plot_frame.setSizePolicy(sizePolicy1)
+        self.plot_frame.setMinimumSize(QSize(0, 300))
         self.plot_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.plot_frame.setFrameShadow(QFrame.Shadow.Raised)
 
         self.verticalLayout_9.addWidget(self.plot_frame)
 
-        self.file_location_label = QLabel(self.frame_6)
+        self.label_frame = QFrame(self.frame_6)
+        self.label_frame.setObjectName(u"label_frame")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label_frame.sizePolicy().hasHeightForWidth())
+        self.label_frame.setSizePolicy(sizePolicy2)
+        self.label_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.label_frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.label_frame)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.real_label = QLabel(self.label_frame)
+        self.real_label.setObjectName(u"real_label")
+
+        self.horizontalLayout_4.addWidget(self.real_label)
+
+        self.predicted_label = QLabel(self.label_frame)
+        self.predicted_label.setObjectName(u"predicted_label")
+
+        self.horizontalLayout_4.addWidget(self.predicted_label)
+
+
+        self.verticalLayout_9.addWidget(self.label_frame)
+
+        self.frame_7 = QFrame(self.frame_6)
+        self.frame_7.setObjectName(u"frame_7")
+        self.frame_7.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_7)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, -1, 0, 0)
+        self.file_location_label = QLabel(self.frame_7)
         self.file_location_label.setObjectName(u"file_location_label")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.file_location_label.sizePolicy().hasHeightForWidth())
-        self.file_location_label.setSizePolicy(sizePolicy1)
-        self.file_location_label.setMaximumSize(QSize(16777215, 30))
 
-        self.verticalLayout_9.addWidget(self.file_location_label)
+        self.horizontalLayout_5.addWidget(self.file_location_label)
 
-        self.file_dialog_button = QPushButton(self.frame_6)
+        self.file_dialog_button = QPushButton(self.frame_7)
         self.file_dialog_button.setObjectName(u"file_dialog_button")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentOpen))
         self.file_dialog_button.setIcon(icon)
 
-        self.verticalLayout_9.addWidget(self.file_dialog_button)
+        self.horizontalLayout_5.addWidget(self.file_dialog_button)
+
+
+        self.verticalLayout_9.addWidget(self.frame_7)
 
 
         self.verticalLayout_7.addWidget(self.frame_6)
@@ -222,7 +259,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -234,7 +271,9 @@ class Ui_MainWindow(object):
         self.view_model_button.setText(QCoreApplication.translate("MainWindow", u"View Model", None))
         self.settings_button.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.center_title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:400;\">Home</span></p></body></html>", None))
-        self.file_location_label.setText(QCoreApplication.translate("MainWindow", u"Select a file to upload", None))
+        self.real_label.setText("")
+        self.predicted_label.setText("")
+        self.file_location_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.file_dialog_button.setText(QCoreApplication.translate("MainWindow", u"Add File", None))
         self.model_label.setText(QCoreApplication.translate("MainWindow", u"PlaceHolder", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
