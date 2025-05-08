@@ -78,12 +78,12 @@ class MainWindowHandlers:
         fig = Figure(figsize=(10, 6))
         ax = fig.add_subplot(111)
         
-        # Extract values and label
-        values = self.current_data.iloc[0, :-1].values
+        # Extract vals and label
+        vals = self.current_data.iloc[0, :-1].values
         label = "Normal" if self.current_data.iloc[0, -1] == 0 else "Abnormal"
         
         # Plot the ECG
-        ax.plot(values)
+        ax.plot(vals)
         ax.set_title('ECG Signal')
         ax.set_xlabel('Time steps')
         ax.set_ylabel('Amplitude')
@@ -106,21 +106,25 @@ class MainWindowHandlers:
         
         self.canvas.draw()
         self.ui.real_label.setText(f"Real Class: {label}")
-        self._predict_label(values)
+        self._predict_label(self.current_data)
  
-    def _predict_label(self,values):
+    def _predict_label(self,data):
         # Make prediction
         try:
-            prediction = self.model.predict(values)
+            # Reshape the dataframe to (n_samples, 188, 1)
+            reshaped_data = data.values.reshape(-1, 188, 1)
+            # Convert to float32
+            reshaped_data = reshaped_data.astype('float32')
+            prediction = self.model.predict(reshaped_data)
             predicted_class = "Normal" if prediction[0][0] < 0.5 else "Abnormal"
             confidence = prediction[0][0] if predicted_class == "Abnormal" else 1 - prediction[0][0]
             
             # 4. Update UI
-            self.ui.prediction_label.setText(
+            self.ui.predicted_label.setText(
                 f"Predicted class: {predicted_class} ({confidence:.2%} confidence)")
         
         except Exception as e:
-            self.ui.prediction_label.setText(f"Prediction error: {str(e)}")
+            self.ui.predicted_label.setText(f" error: {str(e)}")
 
 
     def _load_model(self):
@@ -133,7 +137,7 @@ class MainWindowHandlers:
             self.model = tf.keras.models.load_model(model_path)
             
             # 3. Verify input shape matches your ECG data (187 features)
-            assert self.model.input_shape == (None, 187)
+            assert self.model.input_shape == (None, 188, 1)
             
             print("Model loaded successfully")
         except Exception as e:
