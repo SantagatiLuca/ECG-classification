@@ -55,7 +55,7 @@
       </property>
       <property name="maximumSize">
        <size>
-        <width>200</width>
+        <width>240</width>
         <height>16777215</height>
        </size>
       </property>
@@ -91,7 +91,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>1000</width>
            <height>100</height>
           </size>
          </property>
@@ -136,7 +136,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>1000</width>
            <height>16777215</height>
           </size>
          </property>
@@ -196,7 +196,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>1000</width>
            <height>100</height>
           </size>
          </property>
@@ -206,7 +206,7 @@
          <property name="frameShadow">
           <enum>QFrame::Shadow::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -219,6 +219,27 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
+          <item>
+           <widget class="QLabel" name="github_link_label">
+            <property name="font">
+             <font>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Check out the project</string>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#1a5fb4;&quot;&gt;github.com&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="openExternalLinks">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -373,6 +394,12 @@
                      <height>300</height>
                     </size>
                    </property>
+                   <property name="font">
+                    <font>
+                     <underline>true</underline>
+                     <strikeout>false</strikeout>
+                    </font>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::Shape::StyledPanel</enum>
                    </property>
@@ -421,7 +448,7 @@
                     <item>
                      <widget class="QLabel" name="predicted_label">
                       <property name="text">
-                       <string> </string>
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -452,7 +479,7 @@
                     <item>
                      <widget class="QLabel" name="file_location_label">
                       <property name="text">
-                       <string>TextLabel</string>
+                       <string>Select a file:</string>
                       </property>
                      </widget>
                     </item>

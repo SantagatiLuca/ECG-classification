@@ -4,6 +4,7 @@ from src.main_window import Ui_MainWindow
 from src.actions import MainWindowHandlers
 
 
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -22,6 +23,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.view_model_button.clicked.connect(self.handlers.view_model_button_click)
         self.ui.settings_button.clicked.connect(self.handlers.settings_button_click)
         self.ui.file_dialog_button.clicked.connect(self.handlers.file_dialog_click)
+
+        # In gui.py
+        self.ui.github_link_label.mousePressEvent = lambda e: self.handlers.github_button_click()
+        self.ui.github_link_label.linkActivated.connect(self.handlers.github_button_click)
         #self.actionOpen.triggered.connect(self.handlers.handle_open_action) # actions
 
 
@@ -30,5 +35,3 @@ if __name__ == '__main__':
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
-#------------------------------------------------------------------------------
-# https://www.pythonguis.com/tutorials/pyside6-first-steps-qt-designer/

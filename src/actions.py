@@ -5,6 +5,8 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
 import tensorflow as tf
+from PySide6.QtCore import QUrl
+from PySide6.QtGui import QDesktopServices
 
 
 class MainWindowHandlers:
@@ -29,6 +31,11 @@ class MainWindowHandlers:
         print("Button Clicked!")
         self.ui.stackedWidget.setCurrentIndex(2)  # Third page
         self.ui.center_title.setText("Settings")
+    
+    def github_button_click(self):
+        print("Opening browser...")
+        url = QUrl("https://github.com/SantagatiLuca/ECG-classification")
+        QDesktopServices.openUrl(url)
 
     def file_dialog_click(self):
         """Handle file dialog and plot the selected ECG"""
